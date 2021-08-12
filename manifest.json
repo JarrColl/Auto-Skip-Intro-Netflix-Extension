@@ -1,0 +1,22 @@
+{
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "skipintro@f.f",
+          "strict_min_version": "42.0"
+        }
+    },
+      
+    "manifest_version": 2,
+    "name": "Skip Intro Netflix",
+    "version": "1.0.1",
+
+    "description": "Skips netflix intro's automatically.",
+
+    "content_scripts": [
+        {
+        "matches": ["*://www.netflix.com/watch/*"],
+        "js": ["skipIntro.js"]
+        }
+    ]
+
+}
