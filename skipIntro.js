@@ -23,47 +23,41 @@ let observer = new MutationObserver((mutations) => {
                 //button-primary watch-video--skip-content-button medium hasLabel ltr-ublg01
                 //data-uia = player-skip-recap
 
-                if(node.classList.contains("ltr-1420x7p")||node.classList.contains("watch-video--skip-content"))
+                var buttons = node.getElementsByTagName("button");
+                //if(node.classList.contains("ltr-16tr625")||node.classList.contains("watch-video--skip-content"))
+                if(buttons)
                 {
                     //var subNode = node.getElementsByClassName("watch-video--skip-content")[0] || node;
                     
-                    var buttons = node.getElementsByTagName("button");
+                    //var buttons = node.getElementsByTagName("button");
                     var button;
                     for(let i = 0; i < buttons.length; i++)
                     {
                         if(buttons[i].classList.contains("watch-video--skip-content-button"))
                         {
                             button = buttons[i];
+
+                            if(skipIntro && button.getAttribute("data-uia") == "player-skip-intro")
+                            {
+                                button.click();
+                            }
+                            else if(skipRecap && button.getAttribute("data-uia") == "player-skip-recap")
+                            {
+                                button.click();
+                            }
+                            //else if(skipRecap && skipIntro)
+                            //{
+                            //    button.click();
+                            //}
                         }
                     }
-                    
-                    if(skipIntro && button.getAttribute("data-uia") == "player-skip-intro")
-                    {
-                        button.click();
-                    }
-                    else if(skipRecap && button.getAttribute("data-uia") == "player-skip-recap")
-                    {
-                        button.click();
-                    }
-                    else if(skipRecap && skipIntro)
-                    {
-                        button.click();
-                    }
                 }
-                //else if(skipRecap && skipIntro && node.classList.contains("watch-video--skip-content"))
-                //{
-                //    console.log("Skipped Recap or Intro");
-                //    node.getElementsByTagName("button")[0].click();
-                //}
             }
         }
     }
 });
 
-//window.addEventListener('DOMContentLoaded', () => {
-    const targetNode = document.getElementsByClassName("ltr-fntwn3")[0] || document;
-    console.log(targetNode);
+const targetNode = document;
+console.log(targetNode);
 
-    
-    observer.observe(targetNode, {childList: true, subtree: true});
-//}, false);
+observer.observe(targetNode, {childList: true, subtree: true});
